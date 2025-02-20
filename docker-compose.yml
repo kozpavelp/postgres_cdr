@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  postgres_cdr:
+    image: postgres:14
+    container_name: postgres-cdr
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_CDR_DB}
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./cdr_postgres_data:/var/lib/postgresql/data
+      - ./cdr_sql_init:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+

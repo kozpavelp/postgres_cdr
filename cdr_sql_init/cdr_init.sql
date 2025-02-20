@@ -1,0 +1,35 @@
+CREATE TABLE IF NOT EXISTS cdr (
+  id BIGSERIAL PRIMARY KEY,
+  calldate TIMESTAMP NOT NULL,
+  clid VARCHAR(80) NOT NULL DEFAULT '',
+  src VARCHAR(80) NOT NULL DEFAULT '',
+  dst VARCHAR(80) NOT NULL DEFAULT '',
+  dcontext VARCHAR(80) NOT NULL DEFAULT '',
+  channel VARCHAR(80) NOT NULL DEFAULT '',
+  dstchannel VARCHAR(80) NOT NULL DEFAULT '',
+  lastapp VARCHAR(80) NOT NULL DEFAULT '',
+  lastdata VARCHAR(80) NOT NULL DEFAULT '',
+  duration INT NOT NULL DEFAULT 0,
+  billsec INT NOT NULL DEFAULT 0,
+  disposition VARCHAR(45) NOT NULL DEFAULT '',
+  amaflags INT NOT NULL DEFAULT 0,
+  accountcode VARCHAR(80) NOT NULL DEFAULT '',
+  uniqueid VARCHAR(150) NOT NULL DEFAULT '',
+  linkedid VARCHAR(150) NOT NULL DEFAULT '',
+  userfield VARCHAR(255) NOT NULL DEFAULT '',
+  did VARCHAR(80) NOT NULL DEFAULT '',
+  recordingfile VARCHAR(255) NOT NULL DEFAULT '',
+  cnum VARCHAR(80) NOT NULL DEFAULT '',
+  cnam VARCHAR(80) NOT NULL DEFAULT '',
+  outbound_cnum VARCHAR(80) NOT NULL DEFAULT '',
+  outbound_cnam VARCHAR(80) NOT NULL DEFAULT '',
+  dst_cnam VARCHAR(80) NOT NULL DEFAULT ''
+);
+
+CREATE INDEX IF NOT EXISTS calldate_idx ON cdr (calldate);
+CREATE INDEX IF NOT EXISTS dst_idx ON cdr (dst);
+CREATE INDEX IF NOT EXISTS accountcode_idx ON cdr (accountcode);
+CREATE INDEX IF NOT EXISTS uniqueid_idx ON cdr (uniqueid);
+CREATE INDEX IF NOT EXISTS linkedid_idx ON cdr (linkedid);
+CREATE INDEX IF NOT EXISTS did_idx ON cdr (did);
+
